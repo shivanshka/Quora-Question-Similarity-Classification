@@ -33,9 +33,11 @@ class ConfigurationManager:
             raw_data_dir= os.path.join(data_ingestion_artifact_dir,
                                               data_ingestion_info.raw_data_dir)
             
+            download_file_name= data_ingestion_info.download_file_name
             data_ingestion_config= DataIngestionConfig(raw_data_dir=Path(raw_data_dir),
                                                        download_url=download_url,
-                                                       zipped_download_dir=Path(zipped_download_dir))
+                                                       zipped_download_dir=Path(zipped_download_dir),
+                                                       download_file_name=download_file_name)
             
             logging.info(f"Data Ingestion Config: {data_ingestion_config}")
             return data_ingestion_config
