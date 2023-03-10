@@ -3,18 +3,18 @@ from pathlib import Path
 
 @dataclass(frozen=True)
 class DataIngestionArtifact:
-    is_ingested:str
+    is_ingested:bool
     message:str
 
 @dataclass(frozen=True)
 class DataValidationArtifact:
     schema_file_path: Path
-    is_validated: str
+    is_validated: bool
     message: str
 
 @dataclass(frozen=True)
 class DataTransformationArtifact:
-    is_transformed:str
+    is_transformed: bool
     message: str
     transformed_train_file_path: Path
     transformed_test_file_path: Path
@@ -23,7 +23,7 @@ class DataTransformationArtifact:
 
 @dataclass(frozen=True)
 class ModelTrainerArtifact:
-    is_trained:str
+    is_trained: bool
     message: str
     trained_model_file_path: Path
     logloss_value: float
@@ -32,10 +32,10 @@ class ModelTrainerArtifact:
 
 @dataclass(frozen=True)
 class ModelEvaluationArtifact:
-    is_model_accepted: str
+    is_model_accepted: bool
     evaluated_model_path: Path
 
 @dataclass(frozen=True)
 class ModelEvaluationArtifact:
-    is_model_pushed: str
+    is_model_pushed: bool
     export_model_file_path: Path

@@ -7,6 +7,7 @@ class DataIngestionConfig:
     raw_data_dir: Path
     download_url: str
     zipped_download_dir: Path
+    download_file_name: str
 
 @dataclass(frozen=True)
 class DataValidationConfig:
@@ -24,7 +25,7 @@ class ModelTrainerConfig:
     trained_model_file_path: Path
     base_accuracy: float
 
-@dataclass(frozer=True)
+@dataclass(frozen=True)
 class ModelEvaluationConfig:
     model_evaluation_file_path: Path
     time_stamp: str
