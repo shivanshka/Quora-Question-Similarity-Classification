@@ -6,6 +6,7 @@ import joblib
 from ensure import ensure_annotations
 from box import ConfigBox
 from box.exceptions import BoxValueError
+import pandas as pd
 from pathlib import Path
 from typing import Any
 
@@ -109,3 +110,20 @@ def get_size(path: Path) -> str:
     """
     size_in_kb = round(os.path.getsize(path)/1024)
     return f"~{size_in_kb} KB"
+
+@ensure_annotations
+def read_data(filepath:Path)-> pd.DataFrame:
+    """
+    Reads the data from specified file path and returns pandas dataframe
+    """
+    if str(filepath).endswith(".csv"):
+        data = pd.read_csv(filepath)
+        return data
+
+    elif str(filepath).endswith(".parquet"):
+        data = pd.read_parquet(filepath)
+        return data
+    
+    else:
+        logging.error(f"Error occured during reading data from {filepath}")
+    
