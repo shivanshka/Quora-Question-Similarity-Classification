@@ -1,0 +1,9 @@
+Features_Count: 5
+Features:
+  id: int64
+  qid1: int64
+  qid2: int64
+  question1: object
+  question2: object
+
+target_feature: is_duplicate

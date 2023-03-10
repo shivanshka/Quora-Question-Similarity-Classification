@@ -4,10 +4,11 @@ training_pipeline_config:
   artifact_dir: artifacts
 
 data_ingestion_config:
-  download_url:
+  download_url: https://github.com/shivanshka/dataset/blob/main/quora_dummy_data_50k.zip?raw=true
   raw_data_dir: raw_data
   zipped_download_dir: zipped_data
   ingested_dir: ingested_data
+  download_file_name: quora_data.zip
 
 data_validation_config:
   schema_dir: config
