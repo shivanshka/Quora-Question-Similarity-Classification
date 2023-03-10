@@ -10,7 +10,7 @@ class DataIngestionConfig:
 
 @dataclass(frozen=True)
 class DataValidationConfig:
-    schema_dir: Path
+    schema_file_path: Path
 
 @dataclass(frozen=True)
 class DataTransformationConfig:
