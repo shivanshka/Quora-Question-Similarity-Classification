@@ -7,7 +7,7 @@ data_ingestion_config:
   download_url:
   raw_data_dir: raw_data
   zipped_download_dir: zipped_data
-  ingested_dir: ingested_dir
+  ingested_dir: ingested_data
 
 data_validation_config:
   schema_dir: config
@@ -17,7 +17,7 @@ data_transformation_config:
   transformed_dir: transformed_data
   transformed_train_dir: train
   transformed_test_dir: test
-  preprocessing_dir: preprocessed
+  preprocessed_dir: preprocessed
   feature_eng_object_file_name: feat_eng.pkl
   preprocessed_object_file_name: preprocessed.pkl
 
