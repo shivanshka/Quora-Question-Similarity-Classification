@@ -4,14 +4,36 @@ from pathlib import Path
 
 @dataclass(frozen=True)
 class DataIngestionConfig:
-    root_dir: Path
-    source_URL: str
-    local_data_file: Path
-    unzip_dir: Path
+    raw_data_dir: Path
+    download_url: str
+    zipped_download_dir: Path
 
 @dataclass(frozen=True)
 class DataValidationConfig:
-    root_dir: Path
-    source_URL: str
-    local_data_file: Path
-    unzip_dir: Path
+    schema_dir: Path
+
+@dataclass(frozen=True)
+class DataTransformationConfig:
+    transformed_train_dir: Path
+    transformed_test_dir: Path
+    feature_eng_object_file_path: Path
+    preprocessed_object_file_path: Path
+
+@dataclass(frozen=True)
+class ModelTrainerConfig:
+    trained_model_file_path: Path
+    base_accuracy: float
+
+@dataclass(frozer=True)
+class ModelEvaluationConfig:
+    model_evaluation_file_path: Path
+    time_stamp: str
+
+@dataclass(frozen=True)
+class ModelPusherConfig:
+    export_dir_path: Path
+
+@dataclass(frozen=True)
+class TrainingPipelineConfig:
+    artifact_dir: Path
+    
