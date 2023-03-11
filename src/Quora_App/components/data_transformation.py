@@ -32,7 +32,6 @@ class FeatureEngineering(BaseEstimator, TransformerMixin):
         nltk.download('stopwords')
         self.SAFE_DIV = 0.0001 # to get result in 4 decimal points
         self.STOP_WORDS = stopwords.words('english')
-        self.start = datetime.now()
 
     def fit(self,X,y=None):
         return self
@@ -289,7 +288,7 @@ class FeatureEngineering(BaseEstimator, TransformerMixin):
         
     def __del__(self):
         logging.info(f"\n{'*'*5} Feature Engineering completed Successfully {'*'*5}")
-        logging.info(f"{'>'*5} Time talken for Execution : {datetime.now()-self.start} {'<'*5}\n")
+        
 
 
 class DataTransformation:
@@ -299,6 +298,7 @@ class DataTransformation:
             logging.info(f"\n{'>'*20} Data Transformation Started {'<'*20}\n")
             self.data_transformation_config=data_transformation_config
             self.data_ingestion_artifact=data_ingestion_artifact
+            self.start = datetime.now()
         except Exception as e:
             raise ApplicationException(e, sys) from e
 
@@ -388,6 +388,7 @@ class DataTransformation:
         
     def __init__(self):
         logging.info(f"\n{'>'*20} Data Transformation Completed {'<'*20}\n")
+        logging.info(f"{'>'*5} Time taken for Execution : {datetime.now()-self.start} {'<'*5}\n")
 
     
     
