@@ -19,6 +19,7 @@ class DataTransformationConfig:
     transformed_test_dir: Path
     feature_eng_object_file_path: Path
     preprocessed_object_file_path: Path
+    word2tfidf_object_file_path: Path
 
 @dataclass(frozen=True)
 class ModelTrainerConfig:

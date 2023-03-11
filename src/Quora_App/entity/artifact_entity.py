@@ -5,6 +5,7 @@ from pathlib import Path
 class DataIngestionArtifact:
     is_ingested:bool
     message:str
+    data_file_path: Path
 
 @dataclass(frozen=True)
 class DataValidationArtifact:
@@ -20,6 +21,7 @@ class DataTransformationArtifact:
     transformed_test_file_path: Path
     preprocessed_obj_file_path: Path
     feat_eng_obj_file_path: Path
+    word2tfidf_object_file_path: Path
 
 @dataclass(frozen=True)
 class ModelTrainerArtifact:

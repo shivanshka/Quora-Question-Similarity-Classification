@@ -126,4 +126,22 @@ def read_data(filepath:Path)-> pd.DataFrame:
     
     else:
         logging.error(f"Error occured during reading data from {filepath}")
+
+@ensure_annotations
+def save_data(filepath:Path, df:pd.DataFrame, format:str='csv')-> pd.DataFrame:
+    """
+    Saves the dataframe to specified file path either in .CSV or .PARQUET format
+     Params:
+        format (str) : 'csv' for saving in .csv format (default)
+                       'parquet' for saving in .parquet format
+    """
+    if format=='csv':
+        df.to_csv(filepath, index=None)
+
+    elif format=='parquet':
+        df.to_parquet(filepath)
+    
+    else:
+        logging.error(f"Error occured during saving data to {filepath}")
+    
     

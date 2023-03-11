@@ -21,6 +21,7 @@ data_transformation_config:
   preprocessed_dir: preprocessed
   feature_eng_object_file_name: feat_eng.pkl
   preprocessed_object_file_name: preprocessed.pkl
+  word2tfidf_object_file_name: word2tfidf.pkl
 
 model_trainer_config:
   trained_model_dir: trained_model

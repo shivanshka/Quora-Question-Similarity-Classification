@@ -83,10 +83,15 @@ class ConfigurationManager:
                                                 data_transformation_info.preprocessed_dir,
                                                 data_transformation_info.preprocessed_object_file_name)
             
+            word2tfidf_object_file_path= os.path.join(data_transformation_artifact_dir,
+                                                data_transformation_info.preprocessed_dir,
+                                                data_transformation_info.word2tfidf_object_file_name)
+            
             data_transformation_config= DataTransformationConfig(transformed_train_dir=Path(transformed_train_dir),
                                                                  transformed_test_dir=Path(transformed_test_dir),
                                                                  feature_eng_object_file_path=Path(feature_eng_object_file_path),
-                                                                 preprocessed_object_file_path=Path(preprocessed_object_file_path))
+                                                                 preprocessed_object_file_path=Path(preprocessed_object_file_path),
+                                                                 word2tfidf_object_file_path=Path(word2tfidf_object_file_path))
             logging.info(f"Data Transformation Config: {data_transformation_config}")
             return data_transformation_config
         except Exception as e:
