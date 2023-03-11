@@ -55,7 +55,8 @@ class DataIngestion:
             logging.info("Unzipping compeleted sucessfully!!!!")
 
             data_ingestion_artifact= DataIngestionArtifact(is_ingested=True,
-                                                           message="Data Ingestion Successfull")
+                                                           message="Data Ingestion Successfull",
+                                                           data_file_path=Path(raw_data_dir))
             return data_ingestion_artifact
         except Exception as e:
             raise ApplicationException(e, sys) from e
