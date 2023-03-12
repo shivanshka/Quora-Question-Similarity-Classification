@@ -20,6 +20,7 @@ spacy
 beautifulsoup4
 fuzzywuzzy
 python_Levenshtein
+pyarrow
 
 # For installing local package
 -e .

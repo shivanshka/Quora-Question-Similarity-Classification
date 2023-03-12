@@ -2,13 +2,13 @@ import os
 import yaml
 from Quora_App.logger import logging
 import json
-import joblib
+import pickle
 from ensure import ensure_annotations
 from box import ConfigBox
 from box.exceptions import BoxValueError
 import pandas as pd
 from pathlib import Path
-from typing import Any
+
 
 @ensure_annotations
 def read_yaml(path_to_yaml:Path) -> ConfigBox:
@@ -76,18 +76,19 @@ def load_json(path: Path) -> ConfigBox:
     return ConfigBox(content)
 
 @ensure_annotations
-def save_bin(data: Any, path: Path):
+def save_bin(obj, path: Path):
     """
     Save binary file
     Args:
-        data (Any): data to be saved as binary
+        obj: object to be saved as binary
         path (Path): path to binary file
     """
-    joblib.dump(value=data, filename=path)
+    with open(path,"wb") as file:
+        pickle.dump(file=file, obj=obj)
     logging.info(f"Binary file saved at: {path}")
 
 @ensure_annotations
-def load_bin(path: Path) -> Any:
+def load_bin(path: Path):
     """
     Load Binary Data
     Args:
@@ -95,7 +96,8 @@ def load_bin(path: Path) -> Any:
     Returns:
         Any: object stored in the file
     """
-    data = joblib.load(path)
+    with open(path,"rb") as file:
+        data = pickle.load(file)
     logging.info(f"binary file loaded from: {path}")
     return data
 
@@ -128,7 +130,7 @@ def read_data(filepath:Path)-> pd.DataFrame:
         logging.error(f"Error occured during reading data from {filepath}")
 
 @ensure_annotations
-def save_data(filepath:Path, df:pd.DataFrame, format:str='csv')-> pd.DataFrame:
+def save_data(filepath:Path, df:pd.DataFrame, format:str='csv'):
     """
     Saves the dataframe to specified file path either in .CSV or .PARQUET format
      Params:

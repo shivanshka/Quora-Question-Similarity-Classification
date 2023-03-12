@@ -67,21 +67,17 @@ class FeatureEngineering(BaseEstimator, TransformerMixin):
                 q1 = row[1].question1.lower()
                 q2 = row[1].question2.lower()
                 
-                if len(q1) < 10:
+                if (len(q1) < 10) or (len(q2) < 10):
                     indexes.append(r_id)
+
                 q1 = re.sub(pattern, '',q1)
-                
-                if q1 in ['deleted','removed']:
-                    indexes.append(r_id)
-                    
-                if len(q2) < 10:
-                    indexes.append(r_id)
                 q2 = re.sub(pattern, '',q2)
-                
-                if q2 in ['deleted','removed']:
-                    indexes.append(r_id)
-                    
+            
+                if (q1 in ['deleted','removed']) or (q2 in ['deleted','removed']):
+                    indexes.append(r_id) 
+
             data.drop(index=indexes, inplace=True)
+            data.reset_index(drop=True, inplace=True)
             return data
         except Exception as e:
             raise ApplicationException(e, sys) from e
@@ -275,6 +271,7 @@ class FeatureEngineering(BaseEstimator, TransformerMixin):
     
     def similarity_distance_calculate(self,q1,q2):
         try:
+            logging.info(f"-----> Calculating Similarity and Distance Scores {'.'*10}")
             cosine_sim=[]
             euclidean_dist=[]
             for idx in tqdm(range(len(q1))):
@@ -367,17 +364,18 @@ class DataTransformation:
             logging.info("Saving feature engineering object")
             feat_eng_obj_file_path= self.data_transformation_config.feature_eng_object_file_path
             create_directories([os.path.dirname(feat_eng_obj_file_path)])
-            save_bin(data=feat_eng, path=feat_eng_obj_file_path)
+            save_bin(obj=feat_eng, path=feat_eng_obj_file_path)
 
             logging.info("Saving word2tfidf object")
             word2tfidf_object_file_path= self.data_transformation_config.word2tfidf_object_file_path
-            save_bin(data=word2tfidf, path=word2tfidf_object_file_path)
+            save_bin(obj=word2tfidf, path=word2tfidf_object_file_path)
 
             logging.info("Saving scaler object")
             preprocessed_obj_file_path= self.data_transformation_config.preprocessed_object_file_path
-            save_bin(data=sc, path=preprocessed_obj_file_path)
+            save_bin(obj=sc, path=preprocessed_obj_file_path)
 
             data_transformation_artifacts= DataTransformationArtifact(is_transformed=True,
+                                                        message="Data Transfromation is successfull",
                                                         transformed_train_file_path=transformed_train_file_path,
                                                         transformed_test_file_path=transformed_test_file_path,
                                                         feat_eng_obj_file_path=feat_eng_obj_file_path,
