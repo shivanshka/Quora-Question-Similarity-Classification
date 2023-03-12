@@ -292,8 +292,9 @@ class FeatureEngineering(BaseEstimator, TransformerMixin):
 
 
 class DataTransformation:
+
     def __init__(self, data_transformation_config: DataTransformationConfig,
-                        data_ingestion_artifact: DataIngestionArtifact):
+                 data_ingestion_artifact: DataIngestionArtifact):
         try:
             logging.info(f"\n{'>'*20} Data Transformation Started {'<'*20}\n")
             self.data_transformation_config=data_transformation_config

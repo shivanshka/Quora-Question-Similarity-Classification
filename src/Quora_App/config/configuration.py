@@ -60,7 +60,7 @@ class ConfigurationManager:
         except Exception as e:
             raise ApplicationException(e, sys) from e
         
-    def get_data_transformation_config(self) -> DataTransformationConfig:
+    def get_data_transformation_config(self)-> DataTransformationConfig:
         try:
             data_transformation_info= self.config.data_transformation_config
             data_transformation_artifact_dir = os.path.join(self.artifact_dir,
