@@ -1,5 +1,7 @@
 from Quora_App.pipeline import Training_Pipeline
 from Quora_App.logger import logging
+import warnings
+warnings.filterwarnings("ignore")
 
 def main():
     try:

@@ -16,7 +16,7 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 import distance
-import fuzzywuzzy as fuzz
+from fuzzywuzzy import fuzz
 from bs4 import BeautifulSoup
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity, euclidean_distances
@@ -56,9 +56,10 @@ class FeatureEngineering(BaseEstimator, TransformerMixin):
         except Exception as e:
             raise ApplicationException(e, sys) from e
         
-    def data_cleaning(self,data):
+    def data_cleaning(self,data: pd.DataFrame):
         try:
             data.fillna('', inplace=True)
+            data.set_index(data.id, inplace=True)
             indexes=[]
             pattern = '''[!"#%&'(\*)\+,\./:;<=>\?@\[\]\^_`\{\|\}~]'''
             for row in data.iterrows():
@@ -223,7 +224,7 @@ class FeatureEngineering(BaseEstimator, TransformerMixin):
             df["mean_len"]      = list(map(lambda x:x[9], token_features))
 
             ## Computing fuzzy features
-            print(f"-----> Finding Fuzzy Features{'.'*10}")
+            logging.info(f"-----> Finding Fuzzy Features{'.'*10}")
 
             df['token_set_ratio'] = df.apply(lambda x: fuzz.token_set_ratio(x['question1'], x['question2']),axis=1)
             df['token_sort_ratio'] = df.apply(lambda x: fuzz.token_sort_ratio(x['question1'], x['question2']),axis=1)
@@ -293,7 +294,7 @@ class FeatureEngineering(BaseEstimator, TransformerMixin):
 
 class DataTransformation:
 
-    def __init__(self, data_transformation_config: DataTransformationConfig,
+    def __init__(self, data_transformation_config: DataTransformationConfig, 
                  data_ingestion_artifact: DataIngestionArtifact):
         try:
             logging.info(f"\n{'>'*20} Data Transformation Started {'<'*20}\n")
@@ -313,7 +314,7 @@ class DataTransformation:
                 data= pd.concat([data, temp_df], axis=0)
             logging.info("Data read successfully")
 
-            logging.info("Feature Engineering object")
+            logging.info("Reading Feature Engineering object")
             feat_eng = FeatureEngineering()
             transformed_df = feat_eng.fit_transform(data)
 
@@ -387,7 +388,7 @@ class DataTransformation:
         except Exception as e:
             raise ApplicationException(e, sys) from e
         
-    def __init__(self):
+    def __del__(self):
         logging.info(f"\n{'>'*20} Data Transformation Completed {'<'*20}\n")
         logging.info(f"{'>'*5} Time taken for Execution : {datetime.now()-self.start} {'<'*5}\n")
 

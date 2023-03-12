@@ -19,7 +19,7 @@ nltk
 spacy
 beautifulsoup4
 fuzzywuzzy
-
+python_Levenshtein
 
 # For installing local package
 -e .
