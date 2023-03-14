@@ -254,7 +254,7 @@ class ModelTrainer:
 
             logging.info("Saving Best model...")
             trained_model_file_path = self.model_trainer_config.trained_model_file_path
-            create_directories([os.path.dirname(trained_model_file_path)])
+            create_directories([Path(os.path.dirname(trained_model_file_path))])
             save_bin(obj=trained_model[0], path=Path(trained_model_file_path))
 
             logloss_value= trained_model[1]
