@@ -104,7 +104,7 @@ class ConfigurationManager:
                                                      MODEL_TRAINER_ARTIFACT_DIR_KEY,
                                                      self.timestamp)
             
-            trained_model_file_path= os.path.join.path(model_trainer_artifact_dir,
+            trained_model_file_path= os.path.join(model_trainer_artifact_dir,
                                                        model_trainer_info.model_file_name)
             
             model_trainer_config= ModelTrainerConfig(trained_model_file_path=Path(trained_model_file_path),

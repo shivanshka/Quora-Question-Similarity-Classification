@@ -239,10 +239,10 @@ class ModelTrainer:
             test_df= read_data(transformed_test_file_path)
 
             logging.info("Splitting train and test data into input and target feature")
-            train_input_feature= train_df.drop(columns=["Id","is_duplicate"], axis=1)
+            train_input_feature= train_df.drop(columns=["id","is_duplicate"], axis=1)
             train_target_feature= train_df['is_duplicate']
 
-            test_input_feature= test_df.drop(columns=["Id","is_duplicate"], axis=1)
+            test_input_feature= test_df.drop(columns=["id","is_duplicate"], axis=1)
             test_target_feature= test_df['is_duplicate']
 
             logging.info("Getting Trained Model.....")
