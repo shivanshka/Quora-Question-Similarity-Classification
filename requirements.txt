@@ -21,6 +21,8 @@ beautifulsoup4
 fuzzywuzzy
 python_Levenshtein
 pyarrow
+optuna
+xgboost
 
 # For installing local package
 -e .
