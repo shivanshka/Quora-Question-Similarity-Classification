@@ -8,7 +8,7 @@ def main():
         train= Training_Pipeline()
         train.run_training_pipeline()
     except Exception as e:
-        logging.error(e)
+        print(e)
 
 if __name__=="__main__":
     main()
