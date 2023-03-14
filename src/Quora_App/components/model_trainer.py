@@ -18,7 +18,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.calibration import CalibratedClassifierCV
 
-class ModelTainer:
+class ModelTrainer:
     def __init__(self, model_trainer_config: ModelTrainerConfig,
                        data_transformation_artifact: DataTransformationArtifact):
         try:

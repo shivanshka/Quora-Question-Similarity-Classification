@@ -2,8 +2,8 @@ import os, sys
 from Quora_App.logger import logging
 from Quora_App.exception import ApplicationException
 from Quora_App.entity import DataIngestionConfig, DataValidationConfig, DataTransformationConfig
-from Quora_App.entity import DataIngestionArtifact, DataValidationArtifact, DataTransformationArtifact
-from Quora_App.components import DataIngestion, DataValidation, DataTransformation
+from Quora_App.entity import DataIngestionArtifact, DataValidationArtifact, DataTransformationArtifact, ModelTrainerArtifact
+from Quora_App.components import DataIngestion, DataValidation, DataTransformation, ModelTrainer
 from Quora_App.constants import *
 from Quora_App.config import ConfigurationManager
 
@@ -32,10 +32,18 @@ class Training_Pipeline:
         
     def start_data_transformation(self, data_ingestion_artifact:DataIngestionArtifact)-> DataTransformationArtifact:
         try:
-            #
             data_transformation=  DataTransformation(data_transformation_config= self.config.get_data_transformation_config(),
                                                      data_ingestion_artifact=data_ingestion_artifact)
             return data_transformation.initiate_data_transformation()
+        except Exception as e:
+            raise ApplicationException(e, sys) from e
+        
+    def start_model_training(self, data_transformation_artifact:DataIngestionArtifact)->ModelTrainerArtifact:
+        try:
+            model_trainer=  ModelTrainer(model_config= self.config.get_model_trainer_config(),
+                                               data_transformation_artifact=data_transformation_artifact)
+            return model_trainer.initiate_model_training()
+        
         except Exception as e:
             raise ApplicationException(e, sys) from e
         
@@ -45,6 +53,7 @@ class Training_Pipeline:
             data_ingestion_artifact= self.start_data_ingestion(data_ingestion_config=data_ingestion_config)
             data_validation_artifact= self.start_data_validation(data_ingestion_config=data_ingestion_config)
             data_transformation_artifact= self.start_data_transformation(data_ingestion_artifact=data_ingestion_artifact)
+            model_trainer_artifact= self.start_model_training(data_transformation_artifact=data_transformation_artifact)
         except Exception as e:
             raise ApplicationException(e, sys) from e
         
