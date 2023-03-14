@@ -20,14 +20,11 @@ from sklearn.calibration import CalibratedClassifierCV
 
 class ModelTainer:
     def __init__(self, model_trainer_config: ModelTrainerConfig,
-                       data_transformation_artifact: DataTransformationArtifact,
-                       data_validation_artifact: DataValidationArtifact):
+                       data_transformation_artifact: DataTransformationArtifact):
         try:
             logging.info(f"\n{'>'*20} Model Training Started {'<'*20}\n")
             self.model_trainer_config= model_trainer_config
             self.data_transformation_artifact= data_transformation_artifact
-            self.data_validation_artifact= data_validation_artifact
-            self.schema= read_yaml(self.data_validation_artifact.schema_file_path)
         except Exception as e:
             raise ApplicationException(e, sys) from e
 
