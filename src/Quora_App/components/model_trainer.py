@@ -44,7 +44,7 @@ class ModelTrainer:
                     'min_child_weight' : trial.suggest_int('min_child_weight',1,200),
                 }
                 xgb_reg_model = XGBClassifier(objective="binary:logistic",
-                                        tree_method = 'gpu_hist',
+                                        #tree_method = 'gpu_hist',
                                         early_stopping_rounds=20,
                                         verbosity = 2, 
                                         eval_metric='logloss', 
@@ -69,8 +69,8 @@ class ModelTrainer:
             logging.info("Running Hyperparameter Tuning for Random Forest Classifier")
             params = {"n_estimators" : [10, 20, 30, 50, 100, 200],
                       "max_depth" : [3,5,7,9,11,13,15],
-                      "criterion": ["gini", "cross-entopy"],
-                      "sampling_strategy": ["auto"]}
+                      "criterion": ["gini", "entopy", "log_loss"],
+                      "ccp_alpha": [0, 1, 1.2, 1.5, 1.8, 2, 2.5, 3] }
             rf_grid = GridSearchCV(RandomForestClassifier(random_state=30), 
                  param_grid=params, scoring="neg_log_loss", cv=5, refit=True, verbose=2)
             rf_grid.fit(X_train, y_train)
@@ -88,7 +88,7 @@ class ModelTrainer:
 
             logging.info("Training XGBoost Classifier with best params")
             xgb_reg_model = XGBClassifier(objective="binary:logistic",
-                                        tree_method = 'gpu_hist',
+                                        #tree_method = 'gpu_hist',
                                         verbosity = 1, 
                                         eval_metric='logloss', 
                                         random_state=30,
@@ -190,7 +190,7 @@ class ModelTrainer:
             test_roc= roc_auc_score(y_test, predict_y[:,1], labels=[0,1])
             logging.info(f"{model_name} --> Test --> ROC-AUC Score = {round(test_roc,4)}")
 
-            self.plot_confusion_matrix(y_test, np.argmax(predict_y,axis=1))
+            self.plot_confusion_matrix(model_name, y_test, np.argmax(predict_y,axis=1))
             return (log_loss_error, test_roc)
         except Exception as e:
             raise ApplicationException(e, sys) from e
