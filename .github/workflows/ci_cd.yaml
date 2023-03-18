@@ -23,8 +23,8 @@ jobs:
       with:
         aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        application_name: quora-similar-ques-detection
-        environment_name: Quorasimilarquesdetection-env
+        application_name: quora-duplicate-ques_detection
+        environment_name: Quoraduplicatequesdetection-env
         version_label: "123"
         region: us-west-2
         deployment_package: deploy.zip
