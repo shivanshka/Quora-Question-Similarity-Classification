@@ -4,6 +4,7 @@ WORKDIR /usr/src/app
 
 COPY ./requirements.txt ./
 COPY ./setup.py ./
+COPY ./README.md ./
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
