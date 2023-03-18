@@ -136,7 +136,7 @@ class ModelTrainer:
             logging.info(f'{"*"*15} Training XGBoost Classifier Completed Successfully {"*"*15}')
 
             logging.info(f'{"*"*15} Training RandomForest Classifier {"*"*15}')
-            rf_model= self.train_random_forest(X_train, y_train, X_test, y_test)
+            rf_model= self.train_random_forest(X_train, y_train)
 
             logging.info("Evaluating trained model.......")
             rf_metrics= self.model_evaluation(rf_model, "RandomForest", X_train, y_train, X_test, y_test)
