@@ -1,0 +1,8 @@
+version: '1'
+services:
+  deploy:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '80:5000'
