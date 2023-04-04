@@ -23,6 +23,7 @@ python_Levenshtein
 pyarrow
 optuna
 xgboost
+gunicorn
 
 # For installing local package
 -e .
