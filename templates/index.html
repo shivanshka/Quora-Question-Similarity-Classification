@@ -3,7 +3,7 @@
 {% block head %}
 
 
-<title>Index</title>
+<title>Home</title>
 {% endblock %}
 
 {% block content %}
@@ -14,48 +14,42 @@
             <div class="col-md-8">
         <div class="card">
             <div class="card-header">
-                Want to learn project like this.
+                <h4>About Application</h4>
             </div>
             <div class="card-body">
-        
-                <h5 class="card-title">About Application</h5>
-                <p class="card-text">This application helps to identify semantically and contextually similar questions. It is very usefull for platforms like Quora to make their service more efficient and optimized. This will help them to detect similar question and provide answer (already available answer in there database). In this there are two modes Single and File Mode, in File Mode you can upload a csv file and it will return file with predictions. In Single Model, it will only compare two questions inputs. </p>
+                <p class="card-text" style="text-align:justify;">This application helps to identify semantically and contextually similar questions. It is very usefull for platforms like Quora to make their service more efficient and optimized. This will help them to detect similar question and provide answer (already available answer in there database). In this there are two modes Single and File Mode, in File Mode you can upload a csv file and it will return file with predictions. In Single Model, it will only compare two questions inputs. </p>
                 <a class="btn btn-success" target="_blank" href="https://github.com/shivanshka/Quora-Question-Similarity-Classification.git">Source Code</a>
             </div>
         </div>
         </div>
         <div class="col-md-4">
-            <iframe  style = "width:100%;height:100%" src="https://www.youtube.com/embed/42IQIKMSukY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <img  style = "width:100%;height:100%; border-radius: 5%;" src="{{ url_for('static', filename='img/images2.jpg') }}" title="YouTube video player" </img>
             </div>
 
 
         </div>
         </div>
 <div class="col-md-4 col-lg-4 col-sm-12">
-<div class="card">
+<div class="card" style="width: 290px; height: 214px;">
     <div class="card-header">
-       View Logs
+        <h5 class="card-title">Log Files</h5>
     </div>
     <div class="card-body">
-
-        <h5 class="card-title">Log Files</h5>
-        <p class="card-text">All model training log file can be downloaded.</p>
-        <a class="btn btn-primary" href="/logs">Check Logs</a>
+        <p class="card-text" style="text-align:justify;">All model training log file can be downloaded.</p>
+        <a class="btn btn-primary" style="position: sticky !important; top:80%; left:80%;" href="/logs">Check Logs</a>
     </div>
 </div>
 </div>
 
 
 <div class="col-md-4 col-lg-4 col-sm-12" style="margin-bottom:20px;">
-    <div class="card">
+    <div class="card" style="width: 290px; height: 214px;">
         <div class="card-header">
-           View Artifacts
+            <h5 class="card-title">Artifact Files</h5>
         </div>
         <div class="card-body">
-    
-            <h5 class="card-title">Artifact Files</h5>
-            <p class="card-text">All model artifacts file can be downloaded.</p>
-            <a class="btn btn-primary" href="/artifact">Check Artifacts</a>
+            <p class="card-text" style="text-align:justify;">All model artifacts file can be downloaded.</p>
+            <a class="btn btn-primary" style="position: sticky !important; top:80%; left:80%;" href="/artifact">Check Artifacts</a>
         </div>
     </div>
     </div>
@@ -63,44 +57,50 @@
 
 
     <div class="col-md-4 col-lg-4 col-sm-12"  style="margin-bottom:20px;">
-        <div class="card">
+        <div class="card" style="width: 290px; height: 214px;">
             <div class="card-header">
-               View Trained Models
-            </div>
-            <div class="card-body">
-        
                 <h5 class="card-title">Trained Models</h5>
-                <p class="card-text">All model file can be downloaded.</p>
-                <a class="btn btn-primary" href="/saved_models">Check Models</a>
+            </div>
+            <div class="card-body">
+                <p class="card-text" style="text-align:justify;">All model file can be downloaded.</p>
+                <a class="btn btn-primary" style="position: sticky !important; top:80%; left:80%;" href="/saved_models">Check Models</a>
             </div>
         </div>
         </div>
 
         
     <div class="col-md-4 col-lg-4 col-sm-12"  style="margin-bottom:20px;">
-        <div class="card">
+        <div class="card" style="width: 290px; height: 214px;">
             <div class="card-header">
-              Estimate California price
+                <h5 class="card-title">Single Predictor</h5>
             </div>
             <div class="card-body">
-        
-                <h5 class="card-title">Access California estimator</h5>
-                <p class="card-text">Form will be displayed. Submit the form to get estimated price for california house.</p>
-                <a class="btn btn-primary" href="/predict">Get Estimated Price</a>
+                <p class="card-text" style="text-align:justify;">Form will be displayed. Submit the form to get the prediction.</p>
+                <a class="btn btn-primary" style="position: sticky !important; top:80%; left:80%;" href="/predict">Single Predict</a>
             </div>
         </div>
         </div>
- 
+
         <div class="col-md-4 col-lg-4 col-sm-12"  style="margin-bottom:20px;">
-            <div class="card">
+            <div class="card" style="width: 290px; height: 214px;">
                 <div class="card-header">
-                  Train housing estimator model.
+                    <h5 class="card-title">File Prediction</h5>
                 </div>
                 <div class="card-body">
-            
-                    <h5 class="card-title">Initiate model training.</h5>
-                    <p class="card-text">Model training will be done. Files such as log, artifact and models can be viewed and downloaded using appropriate link.</p>
-                    <a class="btn btn-danger" href="/train">Initiate Training</a>
+                    <p class="card-text" style="text-align:justify;">Upload csv file in the form. On submitting the form predicted file will be downloaded</p>
+                    <a class="btn btn-primary" style="position: sticky !important; top:80%; left:80%;" href="/file_predict">File Predict</a>
+                </div>
+            </div>
+            </div>
+
+        <div class="col-md-4 col-lg-4 col-sm-12"  style="margin-bottom:20px;">
+            <div class="card" style="width: 290px; height: 214px;">
+                <div class="card-header">
+                    <h5 class="card-title">Initiate Model Training</h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text" style="text-align:justify;">Model training will be done. Files such as log, artifact and models can be viewed and downloaded using appropriate link</p>
+                    <a class="btn btn-danger" style="position: sticky !important; top:100%; left:80%;" href="/train">Initiate Training</a>
                 </div>
             </div>
             </div>

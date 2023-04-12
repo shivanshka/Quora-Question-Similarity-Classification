@@ -128,6 +128,24 @@ def predict():
         return render_template('predict.html', context=context)
     return render_template("predict.html", context=context)
 
+@app.route('/file_predict', methods=['GET', 'POST'])
+def file_predict():
+    context = {
+        HOUSING_DATA_KEY: None,
+        MEDIAN_HOUSING_VALUE_KEY: None
+    }
+
+    if request.method == 'POST':
+        longitude = float(request.form['longitude'])
+        housing_df = housing_data.get_housing_input_data_frame()
+        housing_predictor = HousingPredictor(model_dir=MODEL_DIR)
+        median_housing_value = housing_predictor.predict(X=housing_df)
+        context = {
+            HOUSING_DATA_KEY: housing_data.get_housing_data_as_dict(),
+            MEDIAN_HOUSING_VALUE_KEY: median_housing_value,
+        }
+        return render_template('file_predict.html', context=context)
+    return render_template("file_predict.html", context=context)
 
 @app.route('/saved_models', defaults={'req_path': 'saved_models'})
 @app.route('/saved_models/<path:req_path>')
@@ -206,4 +224,4 @@ def render_log_dir(req_path):
 
 
 if __name__=="__main__":
-    app.run()
+    app.run(debug=True)

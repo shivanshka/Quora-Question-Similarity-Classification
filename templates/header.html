@@ -40,10 +40,10 @@ table-layout: fixed;
 }
 
 li{
-    font-size: small;
+    font-size: medium;
 }
 </style>
-<body style="background-color: #f1f1f1;">
+<body style="background-color: rgb(252, 241, 241);">
     <h1 style="text-align: center;">Quora Question Similarity Classifier</h1>
 
 
@@ -103,16 +103,16 @@ li{
                     <a style=" text-decoration: none;color:black" href="/saved_models">View Trained Model</a>
                 </li>
                 <li class="list-group-item py-1 {% if 'predict' in request.path %} active {% endif %}">
-                    <a style=" text-decoration: none;color:black" href="/predict">Estimate Housing Price</a>
+                    <a style=" text-decoration: none;color:black" href="/predict">Classify Questions</a>
+                </li>
+                <li class="list-group-item py-1 {% if 'update_model_config' in request.path %} active {% endif %}">
+                    <a style=" text-decoration: none;color:black" href="/file_predict">File Prediction</a>
                 </li>
                 <li class="list-group-item py-1 {% if 'train' in request.path %} active {% endif %}">
-                    <a style=" text-decoration: none;color:black" href="/train">Train Housing Price Estimator</a>
+                    <a style=" text-decoration: none;color:black" href="/train">Train Classifier</a>
                 </li>
-                
-
-
                 <li class="list-group-item py-1 {% if 'update_model_config' in request.path %} active {% endif %}">
-                    <a style=" text-decoration: none;color:black" href="/update_model_config">Update Model Config</a>
+                    <a style=" text-decoration: none;color:black" href="/update_model_config">Model Configuration</a>
                 </li>
             </ul>
 
@@ -133,11 +133,11 @@ li{
 
 
 
-    <footer class="text-center text-white " style="background-color: #d4d2d2;">
+    <footer class="text-center text-white " style="background-color: #d4d2d2; position:static; left:0; bottom:0; width: 100%;">
         <!-- Grid container -->
-        <div class="container pt-4">
+        <div class="container pt-4" style="padding-top: 0rem !important;">
             <!-- Section: Social media -->
-            <section class="mb-4">
+            <section class="mb-4" style="margin-bottom: 0rem !important;">
                 <!-- Linkedin -->
                 <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="https://linkedin.com/in/shivansh-ka" role="button"
                     data-mdb-ripple-color="dark"><i class="fab fa-linkedin"></i></a>

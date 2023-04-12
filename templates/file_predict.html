@@ -3,34 +3,27 @@
 {% block head %}
 
 
-<title>Single Prediction</title>
+<title>File Prediction</title>
 {% endblock %}
 
 {% block content %}
 
 <div class="row">
-    <div class="col-md-6 col-sm-12 col-xs-6 col-lg-6">
-
-
-        <form action="/predict" method="post">
-            <legend>Quora Similar Question Classifier Form</legend>
+    <div class="col-md-6 col-sm-12 col-xs-6 col-lg-6" style="width:60%; float:left">
+        <form action="/file_predict" method="post">
+            <legend>File Prediction</legend>
             <div class="mb-3">
-                <label class="form-label">Question 1</label>
-                <input class="form-control" type="text" name="question 1" placeholder="Enter question 1"
-                    required />
+                <label class="form-label">Upload Dataset</label>
+                <input type="file" multiple class="form-control" id="inputGroupFile01" name="files"/>
             </div>
-            <div class="mb-3">
-                <label class="form-label">Question 2</label>
-                <input class="form-control" type="text" name="question 2" placeholder="Enter question 2"
-                    required />
 
-                <input class="btn btn-primary" style="margin-top: 5%;" type="submit" value="Classify Question" required />
+                <input class="btn btn-primary" style="margin-top: 2%;" type="submit" value="Classify Question" required />
             </div>
 
         </form>
-    </div>
+    
 
-    <div class="col-md-6 col-sm-12 col-xs-6 col-lg-6">
+    <div class="col-md-6 col-sm-12 col-xs-6 col-lg-6" style="width:40%; float:right">
         <div class="card">
             <div class="card-header">
               Quora Similar Question Classifier
@@ -66,7 +59,7 @@
         {% else %}
        
               <h5 class="card-title">Submit Form</h5>
-              <p class="card-text">Kindly provide necessary information to classify question duplicacy</p>
+              <p class="card-text">Kindly upload .csv file to predict</p>
             
          
 
@@ -76,4 +69,4 @@
 </div>
     </div>
 
-{% endblock %}
+    {% endblock %}
