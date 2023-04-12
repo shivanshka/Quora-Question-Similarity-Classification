@@ -1,6 +1,7 @@
-import os
+import os, sys
 import yaml
 from Quora_App.logger import logging
+from Quora_App.exception import ApplicationException
 import json
 import pickle
 from ensure import ensure_annotations
@@ -146,4 +147,28 @@ def save_data(filepath:Path, df:pd.DataFrame, format:str='csv'):
     else:
         logging.error(f"Error occured during saving data to {filepath}")
     
-    
+def write_yaml_file(file_path:str,data:dict=None):
+    """
+    Create yaml file 
+    file_path: str
+    data: dict
+    """
+    try:
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        with open(file_path,"w") as yaml_file:
+            if data is not None:
+                yaml.dump(data,yaml_file)
+    except Exception as e:
+        raise ApplicationException(e,sys)
+
+
+def read_yaml_file(file_path:str)->dict:
+    """
+    Reads a YAML file and returns the contents as a dictionary.
+    file_path: str
+    """
+    try:
+        with open(file_path, 'rb') as yaml_file:
+            return yaml.safe_load(yaml_file)
+    except Exception as e:
+        raise ApplicationException(e,sys) from e   

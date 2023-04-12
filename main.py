@@ -1,7 +1,7 @@
 
 from flask import Flask, request, send_file, abort, render_template
 import sys
-from Quora_App.utils import read_yaml
+from Quora_App.utils import read_yaml_file, write_yaml_file
 from matplotlib.style import context
 from Quora_App.logger import logging, get_log_dataframe
 from Quora_App.exception import ApplicationException
@@ -164,9 +164,9 @@ def update_model_config():
             print(model_config)
             model_config =json.loads(model_config)
             
-            write_yaml(file_path=MODEL_CONFIG_FILE_PATH,data=model_config)
+            write_yaml_file(file_path=MODEL_CONFIG_FILE_PATH,data=model_config)
         
-        model_config=  read_yaml(file_path=MODEL_CONFIG_FILE_PATH)
+        model_config=  read_yaml_file(file_path=MODEL_CONFIG_FILE_PATH)
         return render_template('update_model.html', result={"model_config":model_config})
 
     except  Exception as e:
